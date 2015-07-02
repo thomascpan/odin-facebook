@@ -1,2 +1,12 @@
 <h3>Friends</h3>
 <%= render 'users/shared/user_navbar' %>
+
+<ul>
+	<% @friends.each do |friend| %>
+		<li>
+			<!-- Below doesn't delete both friendhips -->
+			<%= full_name(friend) %> 
+			<%= link_to "Remove", friendship, :method => :delete %>
+		</li>
+	<% end %>
+</ul>

@@ -4,7 +4,14 @@
 <div class="row">
 	<ul>
 		<% @users.each do |user| %>
-			<li><%= link_to "#{full_name(user)}", user %></li>
+			<li>
+				<%= link_to "#{full_name(user)}", user %>
+				<% if @pending_friends.include?(user) %>
+					Friend Request Sent
+				<% else %>
+					<%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post %>
+				<% end %>
+			</li>
 		<% end %>
 	</ul>
 </div>

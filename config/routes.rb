@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'friendships/create'
+
+  get 'friendships/destroy'
+
   devise_scope :user do 
     root "users/registrations#new"
   end
@@ -10,6 +14,7 @@ Rails.application.routes.draw do
   get 'friend_requests' => 'users#friend_requests'
   get 'find_friends' => 'users#find_friends'
 
+  resources :friendships
   resources :users
   resources :posts
   # The priority is based upon order of creation: first created -> highest priority.

@@ -9,7 +9,8 @@ class User < ActiveRecord::Base
 
   has_many :comments
 
+  has_many :friendships
+	has_many :friends, -> { where(friendships: {status: 'accepted'}) }, :through => :friendships
 
-
-
+  has_many :pending_friends, -> { where(friendships: {status: 'pending'}) }, :through => :friendships, :source => :friend
 end

@@ -16,10 +16,17 @@ User.create!(first_name:  "Thomas",
              password_confirmation: "foobar",
              gender: "male")
 
+User.create!(first_name:  "Foo",
+						 last_name:   "Bar",
+             email: "foo@bar.com",
+             password:              "foobar",
+             password_confirmation: "foobar",
+             gender: "male")
+
 99.times do |n|
   first_name  = Faker::Name.first_name
   last_name   = Faker::Name.last_name
-  email = "example-#{n+1}@railstutorial.org"
+  email = "example-#{n+1}@gmail.com"
   password = "password"
   gender = rand(2) == 0 ? "male" : "female"
   User.create!(first_name: first_name,

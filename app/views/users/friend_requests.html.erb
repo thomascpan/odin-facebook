@@ -1,2 +1,13 @@
 <h3>Friend Requests</h3>
 <%= render 'users/shared/user_navbar' %>
+
+
+<!-- Wrong requests. Need incoming requests.  -->
+<ul>
+	<% @pending_friends.each do |pending_friend| %>
+		<li>
+			<!-- Below doesn't delete both friendhips -->
+			<%= full_name(pending_friend) %>
+		</li>
+	<% end %>
+</ul>
