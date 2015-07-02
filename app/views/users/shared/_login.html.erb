@@ -1,0 +1,36 @@
+<header class= "navbar navbar-fixed-top">
+	<div class="container">
+		<%= link_to "odin-facebook", root_path, id: "logo" %>
+		<nav>
+			<div class="navbar-right">
+				<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+					<table>
+						<tbody>
+							<tr>
+								<td></td>
+								<td><%= f.label :email %></td>
+								<td><%= f.label :password %></td>
+							</tr>
+							<tr>
+								<td><%= link_to image_tag("login_with_facebook.png"), "#", id: "login_with_facebook" %></td>
+								<td><%= f.email_field :email, autofocus: true %></td>
+								<td><%= f.password_field :password, autocomplete: "off" %></td>
+								<td><%= f.submit "Log in" %></td>			
+							</tr>
+						  <% if devise_mapping.rememberable? -%>
+						  	<tr>
+						  		<td></td>
+						      <td>
+						      	<%= f.check_box :remember_me %>
+						      	<%= f.label :keep_me_logged_in %>
+						      </td>
+						      <td><%= link_to "Forgot your password?", new_password_path(resource_name) %></td>
+						    </tr>
+						  <% end -%>
+					  </tbody>
+					</table>
+				<% end %>
+			</div>	
+		</nav>
+	</div>
+</header>

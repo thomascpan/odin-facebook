@@ -1,9 +1,17 @@
 Rails.application.routes.draw do
   devise_scope :user do 
-    root "devise/registrations#new"
+    root "users/registrations#new"
   end
 
-  devise_for :users
+  devise_for :users, :controllers => { :registrations => "users/registrations"}
+
+  get 'newsfeed' => 'users#newsfeed'
+  get 'friends' => 'users#friends'
+  get 'friend_requests' => 'users#friend_requests'
+  get 'find_friends' => 'users#find_friends'
+
+  resources :users
+  resources :posts
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

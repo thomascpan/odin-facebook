@@ -1,0 +1,26 @@
+<%= form_for(@post) do |f| %>
+	<div>
+		<%= f.text_area :content, class: "form-control", placeholder: "What's on your mind?" %>
+	</div>
+	<%= f.submit("Post") %>
+<% end %>
+<div>
+	<ul>
+		<% @posts.each do |post| %>
+		<li>
+			<%= link_to gravatar_for(post.creator, size: 50), '#' %>
+			<span><%= link_to post.creator.first_name, "#" %></span>
+			<span>
+				<%= post.content %>
+			</span>
+			<span>
+				Posted <%= time_ago_in_words(post.created_at) %> ago.
+			</span>
+			<span>Comments</span>
+			<% post.comments.each do |comment| %>
+				<span><%= comment.content %></span>
+			<% end %>
+		</li>
+		<% end %>
+	</ul>
+</div>		

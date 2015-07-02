@@ -8,6 +8,10 @@ Devise.setup do |config|
   # by default. You can change it below and use your own secret key.
   # config.secret_key = '197fab6c0792fa12f31483e1c9040b545ee9fba11822f337836fa1ea0ebf75a7800cf6692410c394943bf45bbb665c378db1520c6a31c1fb4eefbd71f090428f'
 
+  config.warden do |manager|
+    manager.failure_app = CustomFailure
+  end
+
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
@@ -142,7 +146,7 @@ Devise.setup do |config|
 
   # ==> Configuration for :validatable
   # Range for password length.
-  config.password_length = 8..72
+  config.password_length = 5..72 if Rails.env.test? || Rails.env.development?
 
   # Email regex used to validate email formats. It simply asserts that
   # one (and only one) @ exists in the given string. This is mainly
