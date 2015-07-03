@@ -1,13 +1,12 @@
 <h3>Friend Requests</h3>
 <%= render 'users/shared/user_navbar' %>
 
-
-<!-- Wrong requests. Need incoming requests.  -->
 <ul>
-	<% @pending_friends.each do |pending_friend| %>
+	<% @requesting_friends.each do |requesting_friend| %>
 		<li>
-			<!-- Below doesn't delete both friendhips -->
-			<%= full_name(pending_friend) %>
+			<%= full_name(requesting_friend) %>
+			<%= link_to "Confirm", friendships_path(:friend_id => requesting_friend), :method => :post %>
+			<%= link_to "Delete Request", friendship_path(:id => requesting_friend.friendships.find_by(friend_id: @user), :friend_id => requesting_friend), :method => :delete %>
 		</li>
 	<% end %>
 </ul>

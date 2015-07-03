@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  get 'friendships/create'
-
-  get 'friendships/destroy'
-
   devise_scope :user do 
     root "users/registrations#new"
   end

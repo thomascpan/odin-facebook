@@ -29,9 +29,10 @@ ActiveRecord::Schema.define(version: 20150702041606) do
   create_table "friendships", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "friend_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.string   "status"
+    t.datetime "accepted_at"
   end
 
   create_table "posts", force: :cascade do |t|

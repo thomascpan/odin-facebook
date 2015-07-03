@@ -4,9 +4,9 @@
 <ul>
 	<% @friends.each do |friend| %>
 		<li>
-			<!-- Below doesn't delete both friendhips -->
+
 			<%= full_name(friend) %> 
-			<%= link_to "Remove", friendship, :method => :delete %>
+			<%= link_to "Remove", friendship_path(:id => friend.friendships.find_by(friend_id: @user), :friend_id => friend), :method => :delete %>
 		</li>
 	<% end %>
 </ul>

@@ -1,2 +1,19 @@
 <h3>Find Friends</h3>
 <%= render 'users/shared/user_navbar' %>
+
+<div class="row">
+	<ul>
+		<% @users.each do |user| %>
+			<% if user != @user %>
+				<li>
+					<%= link_to "#{full_name(user)}", user %>
+					<% if @pending_friends.include?(user) %>
+						Friend Request Sent
+					<% else %>
+						<%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post %>
+					<% end %>
+				</li>
+			<% end %>
+		<% end %>
+	</ul>
+</div>
