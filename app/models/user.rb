@@ -20,7 +20,15 @@ class User < ActiveRecord::Base
   validates :last_name, presence: true
   validates :gender, presence: true
 
-  # def friended?(other_user)
-  #   friends.include?(other_user)
-  # end
+  def send_request(friend)
+    Friendship.request(self, friend)
+  end
+
+  def accept_request(friend)
+    Friendship.accept(self, friend)
+  end
+
+  def remove_friendship(friend)
+    Friendship.remove(self, friend)
+  end
 end

@@ -1,12 +1,13 @@
 class FriendshipsController < ApplicationController
   def create
-  	user = current_user
   	friend = User.find(params[:friend_id])
-  	if Friendship.request(current_user, friend).nil?
-      Friendship.accept(user, friend)
+    if Friendship.exists?(user_id: current_user.id, friend_id: friend.id) ||
+      Friendship.exists?(user_id: friend.id, friend_id: current_user.id)
+      current_user.accept_request(friend)
       redirect_to friends_path
     else
-  	 redirect_to friend_requests_path
+      current_user.send_request(friend)
+  	  redirect_to users_path
     end
   end
 

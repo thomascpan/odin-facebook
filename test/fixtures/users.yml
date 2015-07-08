@@ -1,0 +1,36 @@
+thomas:
+  first_name: Thomas
+  last_name: Pan
+  email: thomascpan@gmail.com
+  gender: male
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+
+archer:
+  first_name: Sterling
+  last_name: Archer
+  email: duchess@example.gov
+  gender: male
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+
+lana:
+  first_name: Lana
+  last_name: Kane
+  email: hands@example.gov
+  gender: female
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+
+mallory:
+  first_name: Mallory
+  last_name: Archer
+  email: boss@example.gov
+  gender: female
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+
+<% 30.times do |n| %>
+user_<%= n %>:
+  first_name: User
+  last_name: <% "#{n}" %>
+  email: <%= "user-#{n}@example.com" %>
+  gender: <%= rand(2) == 0 ? "male" : "female" %>
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+<% end %>

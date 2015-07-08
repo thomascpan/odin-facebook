@@ -10,8 +10,8 @@ Rails.application.routes.draw do
   get 'friend_requests' => 'users#friend_requests'
   get 'find_friends' => 'users#find_friends'
 
-  resources :friendships
-  resources :users
+  resources :friendships, only: [:create, :destroy]
+  resources :users, only: [:index, :show]
   resources :posts
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
