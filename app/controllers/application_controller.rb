@@ -6,7 +6,8 @@ class ApplicationController < ActionController::Base
   before_action -> { flash.now[:notice] = flash[:notice].html_safe if flash[:html_safe] && flash[:notice] }
 
   include ApplicationHelper
-  include FriendshipsHelper
+  include NotificationsHelper
+  include UsersHelper
 
 
   def after_sign_in_path_for(user)

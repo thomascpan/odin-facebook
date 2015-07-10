@@ -1,0 +1,9 @@
+<h1>Your Notifications</h1>
+
+<% @notifications.each do |notification| %>
+	<div>
+		<p><%= notification.created_at %></p>
+		<p><%= "#{notification.sender} #{notification.message}" %></p>
+		<p><%= link_to "#{notification.notification_type}", (notification.notification_type).to_sym %></p>
+	</div>
+<% end %>

@@ -5,8 +5,9 @@ class UsersController < ApplicationController
   	@posts = current_user.created_posts.all
   end
 
-  def show
+  def timeline
   	@user = User.find(params[:id])
+    @post = current_user.created_posts.build
   end
 
   def index

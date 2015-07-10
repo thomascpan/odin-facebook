@@ -4,9 +4,11 @@ class FriendshipsController < ApplicationController
     if Friendship.exists?(user_id: current_user.id, friend_id: friend.id) ||
       Friendship.exists?(user_id: friend.id, friend_id: current_user.id)
       current_user.accept_request(friend)
+      notify(:friends, full_name(current_user), friend) 
       redirect_to friends_path
     else
       current_user.send_request(friend)
+      notify(:friend_requests, full_name(current_user), friend)      
   	  redirect_to users_path
     end
   end

@@ -4,7 +4,7 @@
 <ul>
 	<% @requesting_friends.each do |requesting_friend| %>
 		<li>
-			<%= full_name(requesting_friend) %>
+			<%= link_to full_name(requesting_friend), timeline_path(:id =>requesting_friend) %>
 			<%= link_to "Confirm", friendships_path(:friend_id => requesting_friend), :method => :post %>
 			<%= link_to "Delete Request", friendship_path(:id => requesting_friend.friendships.find_by(friend_id: @user), :friend_id => requesting_friend), :method => :delete %>
 		</li>

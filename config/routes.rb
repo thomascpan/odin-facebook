@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_scope :user do 
     root "users/registrations#new"
   end
@@ -6,6 +7,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { :registrations => "users/registrations"}
 
   get 'newsfeed' => 'users#newsfeed'
+  get 'timeline/:id', to: 'users#timeline', as: :timeline
   get 'friends' => 'users#friends'
   get 'friend_requests' => 'users#friend_requests'
   get 'find_friends' => 'users#find_friends'
@@ -13,6 +15,7 @@ Rails.application.routes.draw do
   resources :friendships, only: [:create, :destroy]
   resources :users, only: [:index, :show]
   resources :posts
+  resources :notifications, only: [:index]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

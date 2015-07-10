@@ -1,0 +1,3 @@
+<% if current_user.notifications.where(status: "new").any? %>
+	<span id="notification"><%= current_user.notifications.where(status: "new").count  %></span>
+<% end %>

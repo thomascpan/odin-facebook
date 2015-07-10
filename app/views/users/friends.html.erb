@@ -5,7 +5,7 @@
 	<% @friends.each do |friend| %>
 		<li>
 
-			<%= full_name(friend) %> 
+			<%= link_to full_name(friend), timeline_path(:id => friend) %> 
 			<%= link_to "Remove", friendship_path(:id => friend.friendships.find_by(friend_id: @user), :friend_id => friend), :method => :delete %>
 		</li>
 	<% end %>

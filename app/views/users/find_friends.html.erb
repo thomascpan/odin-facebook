@@ -6,7 +6,7 @@
 		<% @users.each do |user| %>
 			<% if user != @user %>
 				<li>
-					<%= link_to "#{full_name(user)}", user %>
+					<%= link_to "#{full_name(user)}", timeline_path(:id => user) %>
 					<% if @pending_friends.include?(user) %>
 						Friend Request Sent
 					<% else %>
