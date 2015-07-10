@@ -1,0 +1,19 @@
+<li>
+	<div>
+		<%= link_to gravatar_for(post.creator, size: 50), timeline_path(:id => post.creator) %>
+		<% if post.receiver == post.creator %>
+			<span><%= link_to full_name(post.creator), timeline_path(:id => post.creator) %></span>
+		<% else %>
+			<span><%= link_to full_name(post.creator), timeline_path(:id => post.creator) %> > <%= link_to full_name(post.receiver), timeline_path(:id => post.receiver) %></span>
+		<% end %>
+		<span>Posted <%= time_ago_in_words(post.created_at) %> ago.</span>
+		<div>
+			<span><%= post.content %></span>		
+		</div>
+		<div>
+			<% post.comments.each do |comment| %>
+				<span><%= comment.content %></span>
+			<% end %>		
+		</div>		
+	</div>
+</li>

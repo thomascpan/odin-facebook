@@ -1,8 +1,5 @@
 <h1><%= full_name(@user) %></h1>
 
-<%= form_for(@post) do |f| %>
-	<div>
-		<%= f.text_area :content, class: "form-control", placeholder: "Write something..." %>
-	</div>
-	<%= f.submit("Post") %>
-<% end %>
+<%= render 'users/shared/post_form' %>
+
+<%= render 'users/shared/feed' %>

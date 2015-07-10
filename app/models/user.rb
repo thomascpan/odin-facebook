@@ -40,4 +40,16 @@ class User < ActiveRecord::Base
       new_notification.update_attribute(:status, "old")
     end
   end
+
+  def feed
+    all_posts
+  end
+
+  private
+    
+    def all_posts
+      x = self.id
+      query = "creator_id = #{x} or receiver_id = #{x}"
+      Post.where(query).order(created_at: :desc)
+    end
 end
