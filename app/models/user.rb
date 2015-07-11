@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   has_many :created_posts, :foreign_key => "creator_id", :class_name => "Post", dependent: :destroy
   has_many :received_posts, :foreign_key => "receiver_id", :class_name => "Post", dependent: :destroy
 
-  has_many :comments
+  has_many :comments, dependent: :destroy
 
   has_many :friendships
 	has_many :friends, -> { where(friendships: {status: 'accepted'}) }, :through => :friendships
@@ -16,7 +16,9 @@ class User < ActiveRecord::Base
 
   has_many :requesting_friends, -> { where(friendships: {status: 'requested'}) }, :through => :friendships, :source => :friend
 
-  has_many :notifications
+  has_many :notifications, dependent: :destroy
+
+  has_many :likes, dependent: :destroy
 
   validates :first_name, presence: true
   validates :last_name, presence: true
@@ -41,15 +43,27 @@ class User < ActiveRecord::Base
     end
   end
 
-  def feed
-    all_posts
+  def feed(type)
+    if type == "newsfeed"
+      newsfeed
+    elsif type == "timeline"
+      timeline
+    end
   end
 
   private
-    
-    def all_posts
+
+    def timeline
       x = self.id
       query = "creator_id = #{x} or receiver_id = #{x}"
       Post.where(query).order(created_at: :desc)
     end
+
+    def newsfeed
+      x = self.id
+      friend_ids = "SELECT friend_id FROM friendships
+                    WHERE user_id = :user_id"
+      Post.where("creator_id IN (#{friend_ids})
+                  OR creator_id = :user_id", user_id: id).order(created_at: :desc)
+    end    
 end

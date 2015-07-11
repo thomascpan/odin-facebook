@@ -3,14 +3,14 @@ class UsersController < ApplicationController
   def newsfeed
     @user = current_user
   	@post = current_user.created_posts.build
-    @feed = current_user.feed
+    @feed = current_user.feed("newsfeed")
   end
 
   def timeline
   	@user = User.find(params[:id])
     @post = current_user.created_posts.build
     # temporary wall feed
-    @feed = @user.feed
+    @feed = @user.feed("timeline")
   end
 
   def index

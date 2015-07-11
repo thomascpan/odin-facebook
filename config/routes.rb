@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get 'find_friends' => 'users#find_friends'
 
   resources :friendships, only: [:create, :destroy]
+  resources :likes, only: [:create, :destroy]
   resources :users, only: [:index, :show]
   resources :posts
   resources :notifications, only: [:index]
