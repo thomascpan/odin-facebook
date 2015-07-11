@@ -1,0 +1,35 @@
+<div class="comment">
+	<ul>
+		<% post.comments.each do |comment| %>
+			<li>
+				<%= link_to gravatar_for(comment.user, size: 40), timeline_path(:id => comment.user) %>				
+				<%= link_to full_name(comment.user), timeline_path(id: comment.user) %>
+				<%= time_ago_in_words(post.created_at) %>
+				<%= comment.content %>
+				<!-- Like -->
+				<% if comment.likes.find_by(user_id: current_user).nil? %>
+					<div>
+						<%= link_to "Like", likes_path(:likable_id => comment, :likable_type => "Comment"),
+								:method => :post %>
+						<% if comment.likes.any? %>
+							<%= pluralize(comment.likes.count, 'person') %> like this. 
+						<% end %>
+					</div>			
+				<!-- Unlike -->
+				<% else %>
+					<div>
+						<%= link_to "Unlike", like_path(:id => comment.likes.find_by(user_id: current_user)),
+								:method => :delete %>
+						<% if comment.likes.any? %>
+							<% if comment.likes.count == 1 %>
+								You like this.
+							<% else %>
+								You and <%= pluralize(comment.likes.count - 1, 'other') %> like this.
+							<% end %>
+						<% end %>
+					</div>				
+				<% end %>
+			</li>
+		<% end %>
+	</ul>
+</div>

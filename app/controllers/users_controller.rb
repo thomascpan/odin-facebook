@@ -4,13 +4,14 @@ class UsersController < ApplicationController
     @user = current_user
   	@post = current_user.created_posts.build
     @feed = current_user.feed("newsfeed")
+    @comment = current_user.comments.build
   end
 
   def timeline
   	@user = User.find(params[:id])
     @post = current_user.created_posts.build
-    # temporary wall feed
     @feed = @user.feed("timeline")
+    @comment = current_user.comments.build    
   end
 
   def index
@@ -35,9 +36,3 @@ class UsersController < ApplicationController
     @pending_friends = current_user.pending_friends    
   end 
 end
-
-
-    # content = params[:post][:content]
-    # receiver = current_user
-    # @post = current_user.created_posts.create(content: content,
-    #                                           receiver: receiver) 

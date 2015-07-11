@@ -124,9 +124,9 @@ header a {
   position: absolute;
   right: 65px;
   top: 5px;
-
-
 }
+
+
 
 /* signup */
 
@@ -190,4 +190,54 @@ header a {
    }
 }
 
+
+
+/* sidebar */
+
+.side-bar ul {
+  list-style-type: none;
+  padding: 0;  
+}
+
+
+
 /* post */
+
+.post-form {
+  border-radius: 3px;
+  border-color: #d3d6db;
+  margin-bottom: 30px;
+  text-align: right;
+}
+
+.feed ul{
+  list-style-type: none;
+  padding: 0;
+}
+
+.post {
+  background-color: white;
+  margin-bottom: 10px;
+  border-radius: 3px;
+}
+
+.post > div {
+  margin-bottom: 20px;
+}
+
+.post-details > div {
+  display: inline-block;
+}
+
+.post-like-and-comment {
+  background-color: #f6f7f8;
+}
+
+.comment-form {
+  padding: 5px;
+  text-align: right;
+}
+
+.like-info {
+  margin-bottom: 10px;
+}

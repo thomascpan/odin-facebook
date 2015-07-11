@@ -1,17 +1,12 @@
-<% if @user == current_user %>
+<div class=post-form>
   <%= form_for(@post) do |f| %>
-    <div>
+    <% if @user == current_user %>
       <%= hidden_field_tag :receiver_id, current_user.id %>      
-      <%= f.text_area :content, class: "form-control", placeholder: "What's on your mind?" %>
-    </div>
-    <%= f.submit("Post") %>
-  <% end %>
-<% else %>
-  <%= form_for(@post) do |f| %>
-    <div>
+      <%= f.text_area :content, class: "form-control", placeholder: "What's on your mind?" %> 
+    <% else %>
       <%= hidden_field_tag :receiver_id, params[:id] %>
       <%= f.text_area :content, class: "form-control", placeholder: "Write something..." %>
-    </div>
-    <%= f.submit("Post") %>
+    <% end %>
+      <%= f.submit "Post", class: 'btn btn-default' %> 
   <% end %>
-<% end %>
+</div>

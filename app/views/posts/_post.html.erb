@@ -1,47 +1,50 @@
 <li>
-	<div>
-		<%= link_to gravatar_for(post.creator, size: 50), timeline_path(:id => post.creator) %>
-		<% if post.receiver == post.creator %>
-			<span><%= link_to full_name(post.creator), timeline_path(:id => post.creator) %></span>
-		<% else %>
-			<span><%= link_to full_name(post.creator), timeline_path(:id => post.creator) %> > <%= link_to full_name(post.receiver), timeline_path(:id => post.receiver) %></span>
-		<% end %>
-		<span>Posted <%= time_ago_in_words(post.created_at) %> ago.</span>
-		<div>
-			<span><%= post.content %></span>		
+	<div class="post">
+		<div class="post-details">
+			<div class="poster-profile-image">
+			<%= link_to gravatar_for(post.creator, size: 50), timeline_path(:id => post.creator) %>
+			</div>
+			<div class="poster-info">
+				<% if post.receiver == post.creator %>
+					<%= link_to full_name(post.creator), timeline_path(:id => post.creator) %>
+				<% else %>
+					<%= link_to full_name(post.creator), timeline_path(:id => post.creator) %> > <%= link_to full_name(post.receiver), timeline_path(:id => post.receiver) %>
+				<% end %>
+				Posted <%= time_ago_in_words(post.created_at) %> ago.
+			</div>
+		</div>
+		<div class="post-content">
+			<%= post.content %>		
 		</div>
 
-<!-- Like -->
-		<% if post.likes.find_by(user_id: current_user).nil? %>
-			<div>
-				<%= link_to "Like", likes_path(:likable_id => post, :likable_type => "Post"),
-						:method => :post %>
+		<div class="post-like-and-comment">
+			<div class="like-info">
+				<!-- Like -->
+				<% if post.likes.find_by(user_id: current_user).nil? %>
+					<div>
+						<%= link_to "Like", likes_path(:likable_id => post, :likable_type => "Post"),
+								:method => :post %>
+						<% if post.likes.any? %>
+							<%= pluralize(post.likes.count, 'person') %> like this. 
+						<% end %>
+					</div>			
+				<!-- Unlike -->
+				<% else %>
+					<div>
+						<%= link_to "Unlike", like_path(:id => post.likes.find_by(user_id: current_user)),
+								:method => :delete %>
+						<% if post.likes.any? %>
+							<% if post.likes.count == 1 %>
+								You like this.
+							<% else %>
+								You and <%= pluralize(post.likes.count - 1, 'other') %> like this.
+							<% end %>
+						<% end %>
+						</div>				
+				<% end %>
 			</div>
-			<% if post.likes.any? %>
-				<div>
-					<%= pluralize(post.likes.count, 'person') %> like this. 
-				</div>
-			<% end %>
-<!-- Unlike -->
-		<% else %>
-			<div>
-				<%= link_to "Unlike", like_path(:id => post.likes.find_by(user_id: current_user)),
-						:method => :delete %>
-			</div>
-			<% if post.likes.any? %>			
-				<div>
-					<% if post.likes.count == 1 %>
-						You like this.
-					<% else %>
-						You and <%= pluralize(post.likes.count - 1, 'other') %> like this.
-					<% end %>
-				</div>
-			<% end %>
-		<% end %>
-		<div>
-			<% post.comments.each do |comment| %>
-				<span><%= comment.content %></span>
-			<% end %>		
+			<%= render partial: 'comments/comment', locals: {post: post}  %>		
+			<%= render partial: 'users/shared/comment_form', locals: {post: post} %>
 		</div>		
-	</div>
+	</div>		
 </li>

@@ -1,18 +1,21 @@
-<div>
-	<li>
-		<%= link_to gravatar_for(current_user, size: 15), '#' %>
-		<span><%= link_to full_name(current_user), "#" %></span>
-	</li>
-	<li><%= link_to "Timeline", "#" %></li>
-	<li><%= link_to "All Users", users_path %></li>
-	<li><%= link_to "Profile", "#" %></li>
-	<li><%= link_to "Friends", friends_path %></li>
-	<li><%= link_to "Friend Requests", friend_requests_path %></li>
-	<li><%= link_to "Find Friends", find_friends_path %></li>
-	<li><%= link_to "Notifications", notifications_path %></li>
-	<li><%= link_to "About", "#" %></li>
-	<li><%= link_to "Contact/Help", "#" %></li>
-	<li><%= link_to "Privacy", "#" %></li>	
-	<li><%= link_to "Terms of Service", "#" %></li>
-	<li><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
+<div class="side-bar">
+	<ul>
+		<li>
+			<%= link_to gravatar_for(current_user, size: 15), timeline_path(current_user) %>
+			<span><%= link_to full_name(current_user), timeline_path(current_user) %></span>
+		</li>
+		<li><%= link_to "Newsfeed", newsfeed_path %></li>	
+		<li><%= link_to "Timeline", timeline_path(current_user) %></li>
+		<li><%= link_to "All Users", users_path %></li>
+		<li><%= link_to "Profile", "#" %></li>
+		<li><%= link_to "Friends", friends_path %></li>
+		<li><%= link_to "Friend Requests", friend_requests_path %></li>
+		<li><%= link_to "Find Friends", find_friends_path %></li>
+		<li><%= link_to "Notifications", notifications_path %></li>
+		<li><%= link_to "About", "#" %></li>
+		<li><%= link_to "Contact/Help", "#" %></li>
+		<li><%= link_to "Privacy", "#" %></li>	
+		<li><%= link_to "Terms of Service", "#" %></li>
+		<li><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
+	</ul>	
 </div>
