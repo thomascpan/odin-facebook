@@ -1,0 +1,92 @@
+<h1>Edit Profile</h1>
+
+<%= form_for(@profile) do |f| %>
+	<div class="form-horizontal">
+		<div class="form-group">
+			<div class="col-sm-2">
+				<%= f.label :avatar, "Picture" %>
+			</div>
+			<div class="col-sm-10">
+				<%= f.file_field :avatar %>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-sm-2">
+				<%= f.label :birthday %>
+			</div>
+			<div class="col-sm-10">
+				<%= f.date_select :birthday, { :order => [:month, :day, :year], :start_year => 1920, :end_year => Time.now.year}, { :class => "form-control birthday-select" } %>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-sm-2">
+				<%= f.label :country %>
+			</div>
+			<div class="col-sm-10">
+				<%= f.country_select :country, priority_countries = ["United States"], options = {}, html_options = { :class => "form-control" } %>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-sm-2">
+				<%= f.label :education %>				
+			</div>
+			<div class="col-sm-10">
+				<%= f.text_field :education, class: "form-control" %>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-sm-2">
+				<%= f.label :profession %>
+			</div>
+			<div class="col-sm-10">
+				<%= f.text_field :profession, class: "form-control" %>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-sm-2">
+				<%= f.label :about %>
+			</div>
+			<div class="col-sm-10">
+				<%= f.text_area :about, class: "form-control" %>
+			</div>
+		</div>
+
+		<% if false %>
+		<div class="form-group">
+			<div class="col-sm-2">
+				<%= f.label :access %>
+			</div>
+			<div class="col-sm-10">
+				<%= f.label :all_users, "All Users" %>
+				<%= f.radio_button :access, "All Users" %>
+				<%= f.label :friends_only, "Friends Only" %>
+				<%= f.radio_button :access, "Friends Only" %>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-sm-2">
+				<%= f.label :email_notification, "Email Notifications" %>
+			</div>
+			<div class="col-sm-10">
+				<%= f.label :yes %>
+				<%= f.radio_button :email_notification, "Yes" %>
+				<%= f.label :no %>
+				<%= f.radio_button :email_notification, "No" %>
+			</div>
+		</div>
+		<% end %>
+
+		<div>
+			<div class="text-center">
+				<%= f.submit "Save Changes", class: "btn btn-default" %>
+				<%= link_to "Cancel", profile_path(@user), class: "btn btn-default" %>	
+			</div>			
+		</div>
+	</div>
+<% end %>

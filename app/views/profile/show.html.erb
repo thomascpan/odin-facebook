@@ -1,0 +1,81 @@
+<h1><%= full_name(@user) %></h1>
+
+<div>
+	<div>
+		<div class="col-sm-2">
+			Gender
+		</div>
+		<div class="col-sm-10">
+			<%= @user.gender.capitalize %>
+		</div>
+	</div>
+
+	<div>
+		<div class="col-sm-2">
+			Birthday
+		</div>
+		<div class="col-sm-10">
+			<%= @profile.birthday.nil? ? "No birthday provided." : @profile.birthday %>
+		</div>
+	</div>
+
+	<div>
+		<div class="col-sm-2">
+			Country
+		</div>
+		<div class="col-sm-10">
+			<%= @profile.country.nil? ? "No country provided." : @profile.country_name %>
+		</div>
+	</div>
+
+	<div>
+		<div class="col-sm-2">
+			Education
+		</div>
+		<div class="col-sm-10">
+			<%= @profile.education.nil? ? "None specified." : @profile.education %>
+		</div>
+	</div>
+
+	<div>
+		<div class="col-sm-2">
+			Profession
+		</div>
+		<div class="col-sm-10">
+			<%= @profile.profession.nil? ? "None specified." : @profile.profession %>
+		</div>
+	</div>
+
+	<div>
+		<div class="col-sm-2">
+			About
+		</div>
+		<div class="col-sm-10">
+			<%= @profile.about.nil? ? "None specified." : @profile.about %>
+		</div>
+	</div>	
+
+	<div>
+		<div class="col-sm-2">
+			Access
+		</div>
+		<div class="col-sm-10">
+			<%= @profile.access %>
+		</div>
+	</div>
+
+	<div>
+		<div class="col-sm-2">
+			Email Notifications
+		</div>
+		<div class="col-sm-10">
+			<%= @profile.email_notification ? "Yes" : "No" %>
+		</div>
+	</div>
+
+	<div>
+		<div class="col-sm-12">
+			<%= link_to "Edit Your Profile", edit_profile_path(@user) %>
+		</div>			
+	</div>
+</div>

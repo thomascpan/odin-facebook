@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   	@user = User.find(params[:id])
     @post = current_user.created_posts.build
     @feed = @user.feed("timeline")
-    @comment = current_user.comments.build    
+    @comment = current_user.comments.build
   end
 
   def index
@@ -34,5 +34,5 @@ class UsersController < ApplicationController
     @user = current_user
     @users = User.order(:first_name, :last_name)
     @pending_friends = current_user.pending_friends    
-  end 
+  end
 end

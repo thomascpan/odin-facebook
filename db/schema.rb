@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150710064307) do
+ActiveRecord::Schema.define(version: 20150713230116) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,21 @@ ActiveRecord::Schema.define(version: 20150710064307) do
 
   add_index "posts", ["creator_id"], name: "index_posts_on_creator_id", using: :btree
   add_index "posts", ["receiver_id"], name: "index_posts_on_receiver_id", using: :btree
+
+  create_table "profiles", force: :cascade do |t|
+    t.date     "birthday"
+    t.string   "country"
+    t.string   "education"
+    t.string   "profession"
+    t.text     "about"
+    t.string   "access",             default: "All Users"
+    t.boolean  "email_notification", default: true
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

@@ -17,6 +17,8 @@ gem 'jquery-rails',            '4.0.3'
 gem 'turbolinks',              '2.3.0'
 gem 'jbuilder',                '2.2.3'
 gem 'sdoc',                    '0.4.0', group: :doc
+gem "paperclip", "~> 4.3"
+gem 'country_select', github: 'stefanpenner/country_select'
 
 group :development, :test do
 	gem 'letter_opener'
