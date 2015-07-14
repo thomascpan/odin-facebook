@@ -1,7 +1,12 @@
 <div class="side-bar">
 	<ul>
 		<li>
+			<!-- This may be a horrible if else statement  -->
+			<% if current_user.profile.avatar.url == "/images/original/missing.png" %>
 			<%= link_to gravatar_for(current_user, size: 15), timeline_path(current_user) %>
+			<% else %>
+			<%= link_to image_tag( current_user.profile.avatar.url(:small)), timeline_path(current_user) %>			
+			<% end %>
 			<span><%= link_to full_name(current_user), timeline_path(current_user) %></span>
 		</li>
 		<li><%= link_to "Edit Profile", edit_profile_path(current_user) %></li>			

@@ -15,7 +15,7 @@
 			Birthday
 		</div>
 		<div class="col-sm-10">
-			<%= @profile.birthday.nil? ? "No birthday provided." : @profile.birthday %>
+			<%= @profile.birthday.nil? ? "No birthday provided." : @profile.birthday.strftime("%B %e, %Y") %>
 		</div>
 	</div>
 
