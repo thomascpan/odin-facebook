@@ -19,6 +19,9 @@ gem 'jbuilder',                '2.2.3'
 gem 'sdoc',                    '0.4.0', group: :doc
 gem "paperclip", "~> 4.3"
 gem 'country_select', github: 'stefanpenner/country_select'
+gem "nilify_blanks"
+gem "possessive"
+gem 'cancancan', '~> 1.10'
 
 group :development, :test do
 	gem 'letter_opener'

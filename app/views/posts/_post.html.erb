@@ -2,7 +2,11 @@
 	<div class="post">
 		<div class="post-details">
 			<div class="poster-profile-image">
-			<%= link_to gravatar_for(post.creator, size: 50), timeline_path(:id => post.creator) %>
+				<% if post.creator.profile.avatar.url == "/images/original/missing.png" %>
+					<%= link_to gravatar_for(post.creator, size: 50), timeline_path(post.creator) %>
+				<% else %>
+					<%= link_to image_tag( post.creator.profile.avatar.url(:post)), timeline_path(post.creator) %>			
+				<% end %>				
 			</div>
 			<div class="poster-info">
 				<% if post.receiver == post.creator %>

@@ -36,6 +36,9 @@ td {
 	max-width: 1000px;
 }
 
+a:link {
+  text-decoration: none;
+}
 
 
 /* header */
@@ -242,11 +245,44 @@ header a {
   margin-bottom: 10px;
 }
 
-
+.poster-profile-image {
+  margin: 5px;
+}
 
 /* profile */
 
 .birthday-select {
   display: inline-block;
   width: initial;
+}
+
+.info-header {
+  font-weight: bold;
+}
+
+/* profile banner */
+
+.banner-container {
+  margin-bottom: 20px;
+  position: relative;
+  background-color: #f6f7f8;
+}
+
+#banner-info > div {
+  display: inline-block;
+}
+
+.banner-nav {
+  padding: 0;
+  list-style-type: none;
+}
+
+.banner-nav li{
+  font-weight: bold;
+  display: inline;
+  margin: 0px 10px;
+}
+
+.banner-profile-img {
+  margin: 10px;
 }

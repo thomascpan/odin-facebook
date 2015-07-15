@@ -19,6 +19,11 @@ class ProfileController < ApplicationController
   	end
   end
 
+  def friends
+  	@user = User.find(params[:id])
+  	@friends = @user.friends
+  end
+
   private
 
   	def profile_params

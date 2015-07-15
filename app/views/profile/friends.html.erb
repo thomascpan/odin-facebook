@@ -1,0 +1,14 @@
+<%= render 'users/shared/profile_banner', object: @user %>
+
+<h3><%= @user.first_name.possessive %> friends <%= @user.friends.count %></h3>
+<ul>
+	<% @friends.each do |friend| %>
+		<li>
+
+			<%= link_to full_name(friend), timeline_path(:id => friend) %> 
+			<% if @user == current_user %>
+			<%= link_to "Remove", friendship_path(:id => friend.friendships.find_by(friend_id: @user), :friend_id => friend), :method => :delete %>
+			<% end %>
+		</li>
+	<% end %>
+</ul>

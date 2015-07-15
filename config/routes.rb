@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get 'friends' => 'users#friends'
   get 'friend_requests' => 'users#friend_requests'
   get 'find_friends' => 'users#find_friends'
+  get 'profile_friends/:id' => 'profile#friends', as: :profile_friends
 
   resources :friendships, only: [:create, :destroy]
   resources :likes, only: [:create, :destroy]

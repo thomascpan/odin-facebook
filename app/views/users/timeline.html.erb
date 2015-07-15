@@ -1,5 +1,9 @@
-<h1><%= full_name(@user) %></h1>
+<%= render 'users/shared/profile_banner', object: @user %>
+
+<% if current_user.friends.include?(@user) %>
 
 <%= render 'users/shared/post_form' %>
 
 <%= render 'users/shared/feed' %>
+
+<% end %>

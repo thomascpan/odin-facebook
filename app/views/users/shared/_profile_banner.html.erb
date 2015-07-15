@@ -1,0 +1,32 @@
+<div class="banner-container">
+	<div id="banner-info">
+		<div class="img-thumbnail banner-profile-img">
+			<% if @user.profile.avatar.url == "/images/original/missing.png" %>
+				<%= link_to gravatar_for(@user, size: 160), timeline_path(@user) %>
+			<% else %>
+				<%= link_to image_tag( @user.profile.avatar.url(:profile_banner)), timeline_path(@user) %>			
+			<% end %>
+		</div>
+
+		<div>
+			<h2><%= link_to full_name(@user), timeline_path(@user) %></h2>
+		</div>
+	</div>
+
+	<div>
+		<ul class="banner-nav">
+			<li><%= link_to "Timeline", timeline_path(@user) %></li>
+			<li><%= link_to "Profile", profile_path(@user) %></li>
+			<li><%= link_to "Friends #{@user.friends.count}", profile_friends_path(@user) %></li>
+			<% if @user == current_user %>
+			<% elsif current_user.friends.include?(@user) %>
+				<li>Friends with <%= @user.first_name %></li>
+			<% elsif current_user.pending_friends.include?(@user) %>
+				<li>Friend request sent</li>
+			<% else %>
+				<li><%= link_to "Add Friend", friendships_path(:friend_id => @user), :method => :post %></li>
+			<% end %>			
+		</ul>
+	</div>
+
+</div>
