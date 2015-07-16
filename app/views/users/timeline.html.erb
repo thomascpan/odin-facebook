@@ -1,9 +1,20 @@
 <%= render 'users/shared/profile_banner', object: @user %>
 
-<% if current_user.friends.include?(@user) %>
+<% if access_level?(current_user, @user)[:familiar] %>
 
-<%= render 'users/shared/post_form' %>
+	<%= render 'users/shared/post_form' %>
 
-<%= render 'users/shared/feed' %>
+	<%= render 'users/shared/feed' %>
 
+<% else %>
+
+	<% if access_level?(current_user, @user)[:accessible] %>
+
+		<%= render 'users/shared/feed' %>
+
+	<% else %>
+
+		<div><%= "#{@user.first_name} only shares profile and posts with friends." %></div>
+
+	<% end %>
 <% end %>

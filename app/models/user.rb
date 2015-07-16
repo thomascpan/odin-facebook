@@ -55,6 +55,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def friend?(user)
+    friends.include?(user)
+  end
+
   private
 
     def timeline

@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+ before_action :correct_user, only: [:create, :destroy]
+
   def create
   	content = params[:comment][:content]
   	post_id = params[:post_id]

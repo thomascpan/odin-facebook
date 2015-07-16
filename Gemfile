@@ -21,7 +21,7 @@ gem "paperclip", "~> 4.3"
 gem 'country_select', github: 'stefanpenner/country_select'
 gem "nilify_blanks"
 gem "possessive"
-gem 'cancancan', '~> 1.10'
+gem "genderize"
 
 group :development, :test do
 	gem 'letter_opener'

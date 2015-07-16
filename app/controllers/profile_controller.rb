@@ -1,4 +1,6 @@
 class ProfileController < ApplicationController
+  before_action :correct_user, only: [:edit, :update ]
+
   def show
   	@user = User.find(params[:id])
   	@profile = @user.profile
@@ -28,5 +30,5 @@ class ProfileController < ApplicationController
 
   	def profile_params
   		params.require(:profile).permit(:avatar, :delete_avatar, :birthday, :country, :education, :profession, :about, :access, :email_notification)
-		end
+		end  
 end

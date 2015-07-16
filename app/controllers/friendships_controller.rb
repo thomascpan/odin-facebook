@@ -1,4 +1,5 @@
 class FriendshipsController < ApplicationController
+
   def create
   	friend = User.find(params[:friend_id])
     if Friendship.exists?(user_id: current_user.id, friend_id: friend.id) ||

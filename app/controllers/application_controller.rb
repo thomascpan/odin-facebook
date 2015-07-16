@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   include ApplicationHelper
   include NotificationsHelper
   include UsersHelper
+  include SessionsHelper
 
 
   def after_sign_in_path_for(user)
@@ -23,13 +24,20 @@ class ApplicationController < ActionController::Base
     UserMailer.welcome_email(user).deliver
   end
 
-  private
+    private
 
-  def configure_signup_flash user
-    msg = "Welcome to Odinbook! You have signed up successfully."
-    msg += "#{view_context.link_to('Fill your profile and configure'\
-           ' your account here', edit_profile_path(user.profile))}"
-    flash[:notice]    = msg
-    flash[:html_safe] = true
-  end  
+
+    def configure_signup_flash user
+      msg = "Welcome to Odinbook! You have signed up successfully."
+      msg += "#{view_context.link_to('Fill your profile and configure'\
+             ' your account here', edit_profile_path(user.profile))}"
+      flash[:notice]    = msg
+      flash[:html_safe] = true
+    end
+
+    def correct_user
+      @user = User.find(params[:id])
+      flash[:error] = "Access Denied."
+      redirect_to newsfeed_path unless current_user?(@user)
+    end    
 end

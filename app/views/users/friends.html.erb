@@ -1,12 +1,12 @@
 <h3>Friends</h3>
 <%= render 'users/shared/user_navbar' %>
 
-<ul>
-	<% @friends.each do |friend| %>
-		<li>
+	<ul>
+		<% @friends.each do |friend| %>
+			<li>
 
-			<%= link_to full_name(friend), timeline_path(:id => friend) %> 
-			<%= link_to "Remove", friendship_path(:id => friend.friendships.find_by(friend_id: @user), :friend_id => friend), :method => :delete %>
-		</li>
-	<% end %>
-</ul>
+				<%= link_to full_name(friend), timeline_path(:id => friend) %> 
+				<%= link_to "Remove", friendship_path(:id => friend.friendships.find_by(friend_id: @user), :friend_id => friend), :method => :delete %>
+			</li>
+		<% end %>
+	</ul>

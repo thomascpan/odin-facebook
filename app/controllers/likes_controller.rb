@@ -1,4 +1,5 @@
 class LikesController < ApplicationController
+
   def create
   	likable_id = params[:likable_id]
   	likable_type = params[:likable_type]
