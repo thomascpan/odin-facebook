@@ -24,6 +24,7 @@ gem "possessive"
 gem 'omniauth-facebook'
 gem 'figaro'
 
+
 group :development, :test do
 	gem 'letter_opener'
   gem 'byebug',      '3.4.0'
