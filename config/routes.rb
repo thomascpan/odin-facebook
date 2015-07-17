@@ -4,7 +4,8 @@ Rails.application.routes.draw do
     root "users/registrations#new"
   end
 
-  devise_for :users, :controllers => { :registrations => "users/registrations"}
+  devise_for :users, :controllers => { :registrations => "users/registrations",
+                                       :omniauth_callbacks => "users/omniauth_callbacks" }
 
   get 'newsfeed' => 'users#newsfeed'
   get 'timeline/:id', to: 'users#timeline', as: :timeline

@@ -12,7 +12,7 @@
 								<td><%= f.label :password %></td>
 							</tr>
 							<tr>
-								<td><%= link_to image_tag("login_with_facebook.png"), "#", id: "login_with_facebook" %></td>
+								<td><%= link_to image_tag("login_with_facebook.png"), user_omniauth_authorize_path(:facebook), id: "login_with_facebook" %></td>
 								<td><%= f.email_field :email, autofocus: true %></td>
 								<td><%= f.password_field :password, autocomplete: "off" %></td>
 								<td><%= f.submit "Log in" %></td>			

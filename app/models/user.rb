@@ -4,7 +4,8 @@ class User < ActiveRecord::Base
   after_create :create_profile
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable,
+         :omniauthable, :omniauth_providers => [:facebook]
 
   has_many :created_posts, :foreign_key => "creator_id", :class_name => "Post", dependent: :destroy
   has_many :received_posts, :foreign_key => "receiver_id", :class_name => "Post", dependent: :destroy
@@ -27,6 +28,26 @@ class User < ActiveRecord::Base
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :gender, presence: true
+
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0,20]
+      user.first_name = auth.info.first_name
+      user.last_name = auth.info.last_name
+      user.gender = auth.extra.raw.gender
+    end
+
+    # where(email: auth.info.email).first_or_create do |user|
+    #   user.provider   = auth.provider
+    #   user.uid        = auth.uid
+    #   # user.email      = auth.info.email
+    #   user.first_name = auth.info.first_name
+    #   user.last_name  = auth.info.last_name
+    #   user.gender     = auth.extra.raw_info.gender
+    #   user.password   = Devise.friendly_token[0,20]
+    # end    
+  end  
 
   def send_request(friend)
     Friendship.request(self, friend)
@@ -59,7 +80,11 @@ class User < ActiveRecord::Base
     friends.include?(user)
   end
 
-  private
+  def name
+    "#{first_name} #{last_name}"
+  end
+
+    private
 
     def timeline
       x = self.id

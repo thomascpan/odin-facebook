@@ -21,7 +21,8 @@ gem "paperclip", "~> 4.3"
 gem 'country_select', github: 'stefanpenner/country_select'
 gem "nilify_blanks"
 gem "possessive"
-gem "genderize"
+gem 'omniauth-facebook'
+gem 'figaro'
 
 group :development, :test do
 	gem 'letter_opener'

@@ -30,7 +30,18 @@
 	<%= yield %>
 <% end %>
 
+<div><%= request.env["omniauth.auth"].nil? %></div>
 
+<table>
+<th>key</th>
+<th>Value</th>
+<% for item in request.env %>
+<tr>
+<td><%= item[0] %></td>
+<td><%= item[1] %></td>
+</tr>
+<% end %>
+</table>
 
 <%= debug(params) if Rails.env.development? %>
 </body>
