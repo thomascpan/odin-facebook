@@ -1,0 +1,18 @@
+<h3>Search Results</h3>
+
+<div class="row">
+	<ul>
+		<% @users.each do |user| %>
+			<li>
+				<%= link_to "#{full_name(user)}", timeline_path(:id => user) %>
+				<% if @pending_friends.include?(user) %>
+					Friend Request Sent
+				<% else %>
+					<% if @user != user %>
+						<%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post %>
+					<% end %>
+				<% end %>
+			</li>
+		<% end %>
+	</ul>
+</div>

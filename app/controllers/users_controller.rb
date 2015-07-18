@@ -35,4 +35,10 @@ class UsersController < ApplicationController
     @users = User.order(:first_name, :last_name)
     @pending_friends = current_user.pending_friends    
   end
+
+  def search
+    @user = current_user
+    @users = User.search(params[:search])
+    @pending_friends = current_user.pending_friends  
+  end
 end

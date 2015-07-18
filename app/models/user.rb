@@ -74,6 +74,12 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
+  def self.search(search)
+    if search
+      where("LOWER(first_name) LIKE ?", search.downcase)
+    end
+  end
+
     private
 
     def timeline
