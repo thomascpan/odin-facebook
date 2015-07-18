@@ -35,18 +35,8 @@ class User < ActiveRecord::Base
       user.password = Devise.friendly_token[0,20]
       user.first_name = auth.info.first_name
       user.last_name = auth.info.last_name
-      user.gender = auth.extra.raw.gender
-    end
-
-    # where(email: auth.info.email).first_or_create do |user|
-    #   user.provider   = auth.provider
-    #   user.uid        = auth.uid
-    #   # user.email      = auth.info.email
-    #   user.first_name = auth.info.first_name
-    #   user.last_name  = auth.info.last_name
-    #   user.gender     = auth.extra.raw_info.gender
-    #   user.password   = Devise.friendly_token[0,20]
-    # end    
+      user.gender = auth.extra.raw_info.gender
+    end  
   end  
 
   def send_request(friend)
