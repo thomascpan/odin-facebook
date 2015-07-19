@@ -31,9 +31,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     # raise request.env['omniauth.auth'].to_yaml
 
     @user = User.from_omniauth(request.env["omniauth.auth"])
+    is_new_user = User.unused_email?(@user.email)
 
     if @user.persisted?
-      UserMailer.welcome_email(@user).deliver
+      UserMailer.welcome_email(@user).deliver if is_new_user 
       sign_in_and_redirect @user
       # set_flash_message(:notice, :success, :kind => "Facebook") if is_navigational_format?
     else

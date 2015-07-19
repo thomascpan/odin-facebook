@@ -74,6 +74,10 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
+  def self.unused_email?(email)
+    !User.find_by(email: email)
+  end
+
   def self.search(search)
     if search
       where("LOWER(first_name) LIKE ?", search.downcase)
