@@ -10,4 +10,4 @@ Author(s): Thomas Pan
 
 Preview: https://cryptic-springs-9240.herokuapp.com/
 
-![Odin-Facebook Log In/Sign Up page](/app/assets/images/facebook_clone.png "Odin-Facebook Log In/Sign Up page")
+![Odin-Facebook Log In/Sign Up page](/app/assets/images/facebook-clone.png "Odin-Facebook Log In/Sign Up page")
